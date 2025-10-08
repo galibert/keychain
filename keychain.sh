@@ -995,7 +995,7 @@ elif [ "$myaction" = ssh_rm ]; then
 else
 	# This will start gpg-agent as an ssh-agent if such functionality is enabled (default)
 	startagent_ssh || warn "Unable to start an ssh-agent (error code: $?)"
-	[ -n "$pidfile_out" ] && write_pidfile && eval "$pidfile_out" > /dev/null
+	[ -n "$pidfile_out" ] && write_pidfile && eval "$(catpidf_shell sh)" > /dev/null
 	if ! $gpg_started && wantagent gpg; then
 		# If we also want gpg, and it hasn't been started yet, start it also. We don't need to
 		# look for pidfile output, as this would have been output from the startagent_ssh->startagent_gpg
